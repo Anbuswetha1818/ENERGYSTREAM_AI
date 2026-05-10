@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<section class="auth-section">
+    <div class="card auth-card">
+        <div class="card-header">
+            <h2>Create Account</h2>
+            <p>Join EnergyStream AI for smart forecasting</p>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <form action="/signup" method="POST" class="auth-form">
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Choose a username" required>
+            </div>
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Create a password" required>
+            </div>
+            <div class="form-actions" style="margin-top: 10px;">
+                <button type="submit" class="btn btn-primary full-width">Sign Up</button>
+            </div>
+        </form>
+        <div class="auth-footer">
+            <p>Already have an account? <a href="/login">Login</a></p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .auth-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 60vh;
+    }
+
+    .auth-card {
+        width: 100%;
+        max-width: 450px;
+        padding: 40px;
+    }
+
+    .auth-card h2 {
+        margin-bottom: 10px;
+        font-size: 28px;
+    }
+
+    .auth-card p {
+        color: var(--text-dim);
+        margin-bottom: 30px;
+    }
+
+    .auth-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .auth-footer {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 14px;
+        color: var(--text-dim);
+    }
+
+    .auth-footer a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .alert {
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+    .alert-error {
+        background: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+        border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+</style>
+{% endblock %}

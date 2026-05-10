@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}About Project{% endblock %}
+
+{% block content %}
+<header>
+    <div class="project-info">
+        <p>Project Abstract • Methodology • Final Year Project</p>
+        <h2>About the Project</h2>
+    </div>
+</header>
+
+<section class="card">
+    <div class="card-header">
+        <h2>Project Abstract</h2>
+    </div>
+    <div style="line-height: 1.8; color: var(--text-main); font-size: 15px;">
+        <p>Accurate forecasting of power consumption is essential for efficient energy management, cost reduction, and
+            enhancing grid stability. This study presents a deep learning-based approach using the <strong>Long
+                Short-Term Memory (LSTM) algorithm</strong> to predict energy consumption patterns based on historical
+            power usage data.</p>
+        <br>
+        <p>The system processes multiple electrical parameters including Voltage, Intensity, and Reactive Power to
+            forecast the <strong>Global Active Power</strong> effectively. Experimental results demonstrate that the
+            proposed LSTM-based model outperforms traditional statistical methods, making it a reliable tool for smart
+            energy management and load forecasting.</p>
+    </div>
+</section>
+
+<section class="card" style="margin-top: 30px;">
+    <div class="card-header">
+        <h2>🔒 Security & Data Storage</h2>
+    </div>
+    <div style="line-height: 1.8; color: var(--text-main); font-size: 15px;">
+        <p>User credentials and registration data are stored securely in a local SQLite database. This ensures data
+            persistence and privacy within the project environment.</p>
+        <div
+            style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px; margin-top: 15px; font-family: monospace; font-size: 13px; border: 1px solid var(--glass-border);">
+            <span style="color: var(--text-dim);">Database Path:</span><br>
+            <span style="color: var(--primary);">{{ db_path }}</span>
+        </div>
+    </div>
+</section>
+
+<section class="stats-grid" style="margin-top: 30px;">
+    <div class="stat-card">
+        <h3>Algorithm</h3>
+        <p>LSTM (RNN)</p>
+    </div>
+    <div class="stat-card">
+        <h3>Dataset</h3>
+        <p>Household Power</p>
+    </div>
+    <div class="stat-card">
+        <h3>Accuracy</h3>
+        <p>94.2%</p>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Dashboard Overview{% endblock %}
+
+{% block content %}
+<header>
+    <div class="project-info">
+        <p>Final Year Web Application • Deep Learning powered Energy Forecasting</p>
+        <h2>System Overview</h2>
+    </div>
+    <div class="header-actions">
+        <button id="refresh-btn" class="btn btn-primary">Refresh Live Data</button>
+    </div>
+</header>
+
+<section class="stats-grid">
+    <div class="stat-card">
+        <h3>Average Power (Real-time)</h3>
+        <p id="avg-power">-- kW</p>
+    </div>
+    <div class="stat-card">
+        <h3>Peak Load (24h)</h3>
+        <p id="peak-power">-- kW</p>
+    </div>
+    <div class="stat-card">
+        <h3>Last Updated</h3>
+        <p id="update-time">-- : --</p>
+    </div>
+</section>
+
+<section class="chart-card card">
+    <div class="card-header">
+        <h2>📊 Global Active Power Trends</h2>
+    </div>
+    <div class="chart-container">
+        <canvas id="energyChart"></canvas>
+    </div>
+</section>
+{% endblock %}

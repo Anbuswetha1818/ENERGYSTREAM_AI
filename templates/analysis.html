@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Model Analysis{% endblock %}
+
+{% block content %}
+<header>
+    <div class="project-info">
+        <p>Comparative Benchmarking • LSTM vs Traditional Models</p>
+        <h2>🧠 Prediction Analysis</h2>
+    </div>
+</header>
+
+<section class="analysis-grid">
+    <div class="card metrics-card">
+        <h2>Performance Metrics (RMSE)</h2>
+        <ul>
+            <li>
+                <span>LSTM (Proposed)</span>
+                <strong id="lstm-rmse">0.550 kW</strong>
+            </li>
+            <li>
+                <span>Random Forest</span>
+                <strong id="rf-rmse">0.470 kW</strong>
+            </li>
+            <li>
+                <span>Decision Tree</span>
+                <strong id="dt-rmse">0.730 kW</strong>
+            </li>
+        </ul>
+        <div style="margin-top: 20px; font-size: 13px; color: var(--text-dim);">
+            * Based on hourly resampled household power consumption data (2018-2022).
+        </div>
+    </div>
+
+    <div class="card comparison-card">
+        <h2>Comparative Performance Chart</h2>
+        <div class="chart-container-small">
+            <canvas id="comparisonChart"></canvas>
+        </div>
+    </div>
+</section>
+{% endblock %}

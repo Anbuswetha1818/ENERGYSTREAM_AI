@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Smart Supply Forecasting{% endblock %}
+
+{% block content %}
+<header>
+    <div class="project-info">
+        <p>Interactive Forecast Tool • Multidimensional Input</p>
+        <h2>⚡ Smart Supply Forecasting</h2>
+    </div>
+</header>
+
+<section class="manual-tool">
+    <div class="card form-card">
+        <div class="card-header">
+            <h2>Manual Forecast Engine (Next Hour Output)</h2>
+        </div>
+        <p style="color: var(--text-dim); margin-bottom: 30px;">Input the core electrical parameters from the abstract
+            to generate a precise supply recommendation for the next grid interval.</p>
+
+        <form id="prediction-form" class="prediction-form">
+            <div class="input-grid">
+                <div class="input-group">
+                    <label>Voltage (V)</label>
+                    <input type="number" step="0.1" name="Voltage" value="238.5" required>
+                </div>
+                <div class="input-group">
+                    <label>Intensity (A)</label>
+                    <input type="number" step="0.1" name="Global_intensity" value="5.2" required>
+                </div>
+                <div class="input-group">
+                    <label>Reactive Power (var)</label>
+                    <input type="number" step="0.001" name="Global_reactive_power" value="0.124" required>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Generate Prediction</button>
+                <button type="button" id="load-sample-btn" class="btn btn-secondary">Load Sample Data</button>
+            </div>
+        </form>
+
+        <div id="prediction-result" class="prediction-result hidden">
+            <p>💡 Recommended Supply for Next Hour:</p>
+            <h2 id="predicted-value">-- kW</h2>
+        </div>
+    </div>
+</section>
+{% endblock %}
