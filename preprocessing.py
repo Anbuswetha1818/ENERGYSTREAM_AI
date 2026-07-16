@@ -9,11 +9,9 @@ def load_data(filepath):
     # Use semicolon delimiter as observed in the file
     df = pd.read_csv(filepath, sep=';', 
                      parse_dates={'dt': ['Date', 'Time']}, 
-                     infer_datetime_format=True, 
                      low_memory=False, 
                      na_values=['?'], 
                      index_col='dt')
-
     
     # Fill missing values with the mean of the column
     df = df.fillna(df.mean())
