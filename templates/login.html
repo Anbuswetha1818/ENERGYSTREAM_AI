@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
-
 {% block content %}
 <section class="auth-section">
     <div class="card auth-card">
@@ -8,7 +7,6 @@
             <h2>Welcome Back</h2>
             <p>Sign in to access your energy insights</p>
         </div>
-
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
         {% for category, message in messages %}
@@ -16,7 +14,6 @@
         {% endfor %}
         {% endif %}
         {% endwith %}
-
         <form action="/login" method="POST" class="auth-form">
             <div class="input-group">
                 <label>Username</label>
@@ -24,8 +21,11 @@
             </div>
             <div class="input-group">
                 <label>Password</label>
-                <input type="password" name="password" placeholder="Enter your password" autocomplete="current-password"
-                    required>
+                <div class="password-wrapper">
+                    <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password"
+                        required>
+                    <span class="toggle-eye" onclick="togglePassword()">👁️</span>
+                </div>
             </div>
             <div class="form-footer">
                 <a href="/forgot-password" class="link-dim">Forgot Password?</a>
@@ -39,7 +39,6 @@
         </div>
     </div>
 </section>
-
 <style>
     .auth-section {
         display: flex;
@@ -47,75 +46,90 @@
         align-items: center;
         min-height: 60vh;
     }
-
     .auth-card {
         width: 100%;
         max-width: 450px;
         padding: 40px;
     }
-
     .auth-card h2 {
         margin-bottom: 10px;
         font-size: 28px;
     }
-
     .auth-card p {
         color: var(--text-dim);
         margin-bottom: 30px;
     }
-
     .auth-form {
         display: flex;
         flex-direction: column;
         gap: 20px;
     }
-
     .form-footer {
         display: flex;
         justify-content: flex-end;
     }
-
     .link-dim {
         color: var(--text-dim);
         font-size: 13px;
         text-decoration: none;
         transition: color 0.3s;
     }
-
     .link-dim:hover {
         color: var(--primary);
     }
-
     .auth-footer {
         margin-top: 30px;
         text-align: center;
         font-size: 14px;
         color: var(--text-dim);
     }
-
     .auth-footer a {
         color: var(--primary);
         text-decoration: none;
         font-weight: 600;
     }
-
     .alert {
         padding: 12px;
         border-radius: 8px;
         margin-bottom: 20px;
         font-size: 14px;
     }
-
     .alert-error {
         background: rgba(239, 68, 68, 0.1);
         color: #ef4444;
         border: 1px solid rgba(239, 68, 68, 0.2);
     }
-
     .alert-success {
         background: rgba(16, 185, 129, 0.1);
         color: #10b981;
         border: 1px solid rgba(16, 185, 129, 0.2);
     }
+    .password-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    .password-wrapper input {
+        width: 100%;
+        padding-right: 45px;
+    }
+    .toggle-eye {
+        position: absolute;
+        right: 15px;
+        cursor: pointer;
+        font-size: 18px;
+        user-select: none;
+        opacity: 0.7;
+        transition: opacity 0.3s;
+    }
+    .toggle-eye:hover {
+        opacity: 1;
+    }
 </style>
+<script>
+    function togglePassword() {
+        const pwField = document.getElementById('password');
+        pwField.type = pwField.type === 'password' ? 'text' : 'password';
+    }
+</script>
 {% endblock %}
