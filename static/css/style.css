@@ -362,3 +362,174 @@ header {
     background: rgba(255, 255, 255, 0.1);
     color: white;
 }
+
+/* ============================= */
+/* RESPONSIVE / MOBILE STYLES    */
+/* ============================= */
+
+/* Tablets and small laptops */
+@media (max-width: 1024px) {
+    .analysis-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .input-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .glass-container {
+        padding: 30px;
+    }
+}
+
+/* Tablets / large phones */
+@media (max-width: 768px) {
+    .glass-container {
+        width: 92%;
+        padding: 20px;
+        border-radius: 20px;
+        margin: 20px auto;
+    }
+
+    .navbar {
+        padding: 15px 4%;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .nav-links {
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+
+    .logo h1 {
+        font-size: 22px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .stat-card {
+        padding: 18px;
+    }
+
+    .stat-card p {
+        font-size: 20px;
+    }
+
+    .card {
+        padding: 20px;
+        border-radius: 18px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .chart-container {
+        height: 280px;
+    }
+
+    .chart-container-small {
+        height: 220px;
+    }
+
+    .input-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .prediction-result h2 {
+        font-size: 28px;
+    }
+
+    .blob-1, .blob-2, .blob-3 {
+        filter: blur(50px);
+        opacity: 0.1;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .glass-container {
+        width: 94%;
+        padding: 16px;
+        border-radius: 16px;
+    }
+
+    .logo h1 {
+        font-size: 19px;
+    }
+
+    .badge {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+    }
+
+    .card h2 {
+        font-size: 17px;
+    }
+
+    .stat-card h3 {
+        font-size: 11px;
+    }
+
+    .stat-card p {
+        font-size: 18px;
+    }
+
+    .chart-container {
+        height: 220px;
+    }
+
+    .chart-container-small {
+        height: 180px;
+    }
+
+    .input-group input {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+
+    .prediction-result h2 {
+        font-size: 24px;
+    }
+}
