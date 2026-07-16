@@ -64,6 +64,7 @@ body::before {
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--glass-border);
     z-index: 100;
+    position: relative;
 }
 
 .nav-links {
@@ -364,6 +365,20 @@ header {
 }
 
 /* ============================= */
+/* HAMBURGER MENU                */
+/* ============================= */
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 26px;
+    cursor: pointer;
+    z-index: 300;
+}
+
+/* ============================= */
 /* RESPONSIVE / MOBILE STYLES    */
 /* ============================= */
 
@@ -397,19 +412,34 @@ header {
 
     .navbar {
         padding: 15px 4%;
-        flex-wrap: wrap;
-        gap: 12px;
+    }
+
+    .hamburger {
+        display: block;
     }
 
     .nav-links {
-        gap: 16px;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
         width: 100%;
+        background: rgba(15, 23, 42, 0.97);
+        backdrop-filter: blur(10px);
+        padding: 20px 0;
+        gap: 20px;
+        text-align: center;
+        border-bottom: 1px solid var(--glass-border);
+        z-index: 200;
+    }
+
+    .nav-links.show {
+        display: flex;
     }
 
     .nav-links a {
-        font-size: 14px;
+        font-size: 15px;
     }
 
     header {
@@ -489,14 +519,6 @@ header {
     .badge {
         font-size: 10px;
         padding: 3px 6px;
-    }
-
-    .nav-links {
-        gap: 12px;
-    }
-
-    .nav-links a {
-        font-size: 13px;
     }
 
     .card h2 {
