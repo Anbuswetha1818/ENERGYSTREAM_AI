@@ -51,6 +51,7 @@ body::before {
     z-index: 10;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
     position: relative;
+    overflow-x: hidden;
 }
 
 /* Navbar */
@@ -158,6 +159,8 @@ header {
     border: 1px solid var(--glass-border);
     border-radius: 24px;
     padding: 30px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .card h2 {
@@ -180,11 +183,13 @@ header {
 .chart-container {
     height: 400px;
     width: 100%;
+    position: relative;
 }
 
 .chart-container-small {
     height: 300px;
     width: 100%;
+    position: relative;
 }
 
 /* Analysis Grid */
@@ -192,6 +197,7 @@ header {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 30px;
+    width: 100%;
 }
 
 .metrics-card ul {
@@ -311,6 +317,7 @@ header {
     font-size: 15px;
     outline: none;
     transition: border-color 0.3s ease;
+    width: 100%;
 }
 
 .input-group input:focus {
@@ -376,6 +383,16 @@ header {
     font-size: 26px;
     cursor: pointer;
     z-index: 300;
+}
+
+/* ============================= */
+/* CHART / CANVAS OVERFLOW FIX   */
+/* ============================= */
+
+canvas {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 /* ============================= */
