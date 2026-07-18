@@ -1,0 +1,7 @@
+
+# Ignore Python caches
+**/__pycache__/
+*.pyc
+
+# Ignore local database
+power_consumption/users.db

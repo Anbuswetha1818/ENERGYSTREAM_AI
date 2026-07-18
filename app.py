@@ -27,8 +27,12 @@ app.config['MAIL_DEFAULT_SENDER'] = 'your-email@gmail.com'
 mail = Mail(app)
 CORS(app)
 
+# Ensure SQLite database is initialized automatically on startup
+database.init_db()
+
 # Global variables for convenience and caching
-DATA_FILE = 'household_power_consumption.txt'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_FILE = os.path.join(BASE_DIR, 'household_power_consumption.txt')
 scaler = None
 cols = None
 df_resampled = None
@@ -122,7 +126,7 @@ def forgot_password():
                 recovery_msg = f"PASSWORD RECOVERY for {username} ({email}): Sent to inbox."
                 print(f"\n🚀 [EMAIL SENT] to {email}")
                 
-                with open('recovery_logs.txt', 'a') as f:
+                with open(os.path.join(BASE_DIR, 'recovery_logs.txt'), 'a') as f:
                     f.write(f"[{pd.Timestamp.now()}] {recovery_msg}\n")
                     
                 flash(f'Recovery email sent to {email}! Please check your inbox.', 'success')
