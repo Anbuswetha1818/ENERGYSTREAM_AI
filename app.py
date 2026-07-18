@@ -6,10 +6,11 @@ import numpy as np
 import os
 from functools import wraps
 from preprocessing import load_data, preprocess_data
-from model import build_lstm_model
+from model import build_lstm_model, HAS_TENSORFLOW
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
+from sklearn.neural_network import MLPRegressor
 import database
 
 app = Flask(__name__)
@@ -191,12 +192,19 @@ def predict_all():
     X_train = X[-train_subset_size-test_size:-test_size]
     y_train = y[-train_subset_size-test_size:-test_size]
 
-    input_shape = (X.shape[1], X.shape[2])
-    lstm_model = build_lstm_model(input_shape)
-    
-    # Extremely limited training for demo speed, or skip if pre-trained (not implemented yet)
-    lstm_model.fit(X_train, y_train, epochs=1, batch_size=72, verbose=0)
-    y_pred_lstm = lstm_model.predict(X_test)
+    if HAS_TENSORFLOW:
+        input_shape = (X.shape[1], X.shape[2])
+        lstm_model = build_lstm_model(input_shape)
+        # Extremely limited training for demo speed, or skip if pre-trained (not implemented yet)
+        lstm_model.fit(X_train, y_train, epochs=1, batch_size=72, verbose=0)
+        y_pred_lstm = lstm_model.predict(X_test)
+    else:
+        # Fallback: Multi-Layer Perceptron neural network (uses 0 extra memory)
+        X_train_2d = X_train.reshape(len(X_train), -1)
+        X_test_2d = X_test.reshape(len(X_test), -1)
+        mlp = MLPRegressor(hidden_layer_sizes=(50, 50), max_iter=20, random_state=42)
+        mlp.fit(X_train_2d, y_train.flatten())
+        y_pred_lstm = mlp.predict(X_test_2d).reshape(-1, 1)
 
     # Traditional models
     X_trad_train = X_train.reshape(len(X_train), -1)
@@ -261,9 +269,18 @@ def predict_manual():
         scaled_user_row = scaler.transform(dummy_row)[0]
         new_window = np.vstack([last_23, scaled_user_row]).reshape(1, 24, -1)
         
-        input_shape = (new_window.shape[1], new_window.shape[2])
-        lstm_model = build_lstm_model(input_shape)
-        pred_scaled = lstm_model.predict(new_window)
+        if HAS_TENSORFLOW:
+            input_shape = (new_window.shape[1], new_window.shape[2])
+            lstm_model = build_lstm_model(input_shape)
+            pred_scaled = lstm_model.predict(new_window)
+        else:
+            # Fallback: Multi-Layer Perceptron neural network (uses 0 extra memory)
+            new_window_2d = new_window.reshape(1, -1)
+            X_train_2d = X[-500:].reshape(500, -1)
+            y_train_flat = y[-500:].flatten()
+            mlp = MLPRegressor(hidden_layer_sizes=(50, 50), max_iter=20, random_state=42)
+            mlp.fit(X_train_2d, y_train_flat)
+            pred_scaled = mlp.predict(new_window_2d).reshape(1, 1)
         pred_val = invert_scaling(pred_scaled, scaler, len(cols), target_idx)
         
         return jsonify({
