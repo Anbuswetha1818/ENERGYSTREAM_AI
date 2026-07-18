@@ -8,11 +8,19 @@ def load_data(filepath):
     print(f"Loading data from {filepath}...")
     # Use semicolon delimiter as observed in the file
     df = pd.read_csv(filepath, sep=';', 
-                     parse_dates={'dt': ['Date', 'Time']}, 
                      low_memory=False, 
-                     na_values=['?'], 
-                     index_col='dt')
-    
+                     na_values=['?'])
+
+    # Combine Date and Time columns into a single datetime index
+    df['dt'] = pd.to_datetime(df['Date'] + ' ' + df['Time'], format='%d/%m/%Y %H:%M:%S', errors='coerce')
+    df = df.dropna(subset=['dt'])
+    df.set_index('dt', inplace=True)
+    df = df.drop(columns=['Date', 'Time'], errors='ignore')
+
+    # Convert columns to numeric values
+    for col in df.columns:
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+
     # Fill missing values with the mean of the column
     df = df.fillna(df.mean())
     return df
