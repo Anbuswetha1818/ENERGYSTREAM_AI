@@ -273,9 +273,12 @@ def predict_manual():
         else:
             # Fallback: Multi-Layer Perceptron neural network (uses 0 extra memory)
             new_window_2d = new_window.reshape(1, -1)
-            num_seq = len(X)
-            X_train_2d = X.reshape(num_seq, -1)
-            y_train_flat = y.flatten()
+            # Create training data with the matching window size of 24
+            X_manual, y_manual, _, _ = preprocess_data(df, n_in=24)
+            num_seq = len(X_manual)
+            X_train_2d = X_manual.reshape(num_seq, -1)
+            y_train_flat = y_manual.flatten()
+            
             mlp = MLPRegressor(hidden_layer_sizes=(50, 50), max_iter=20, random_state=42)
             mlp.fit(X_train_2d, y_train_flat)
             pred_scaled = mlp.predict(new_window_2d).reshape(1, 1)
