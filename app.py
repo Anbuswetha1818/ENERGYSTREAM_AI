@@ -181,16 +181,13 @@ def predict_all():
     if X is None or len(X) == 0:
         return jsonify({"error": "No data available"}), 400
 
-    # Split for comparison
-    test_size = 200
-    X_test = X[-test_size:]
-    y_test = y[-test_size:]
+    # Split dynamically based on available data (max 200 test samples)
+    total_samples = len(X)
+    test_size = min(200, max(1, int(total_samples * 0.2)))
+    train_size = total_samples - test_size
     
-    # Use a smaller subset for quick "online" training if necessary, 
-    # or just use the model as is. For now, keeping it quick.
-    train_subset_size = 500
-    X_train = X[-train_subset_size-test_size:-test_size]
-    y_train = y[-train_subset_size-test_size:-test_size]
+    X_train, X_test = X[:train_size], X[train_size:]
+    y_train, y_test = y[:train_size], y[train_size:]
 
     if HAS_TENSORFLOW:
         input_shape = (X.shape[1], X.shape[2])
@@ -276,8 +273,9 @@ def predict_manual():
         else:
             # Fallback: Multi-Layer Perceptron neural network (uses 0 extra memory)
             new_window_2d = new_window.reshape(1, -1)
-            X_train_2d = X[-500:].reshape(500, -1)
-            y_train_flat = y[-500:].flatten()
+            num_seq = len(X)
+            X_train_2d = X.reshape(num_seq, -1)
+            y_train_flat = y.flatten()
             mlp = MLPRegressor(hidden_layer_sizes=(50, 50), max_iter=20, random_state=42)
             mlp.fit(X_train_2d, y_train_flat)
             pred_scaled = mlp.predict(new_window_2d).reshape(1, 1)
