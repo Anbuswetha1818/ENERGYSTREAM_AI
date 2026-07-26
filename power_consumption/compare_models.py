@@ -76,17 +76,17 @@ def main():
 
     # --- Visualization ---
     plt.figure(figsize=(10, 6))
-    models = list(results.keys())
-    rmses = list(results.values())
+    ordered_models = ['LSTM', 'Decision Tree', 'Random Forest']
+    rmses = [results[m] for m in ordered_models if m in results]
     
-    bars = plt.bar(models, rmses, color=['blue', 'green', 'orange'])
+    bars = plt.bar(ordered_models, rmses, color=['blue', 'orange', 'green'])
     plt.ylabel('RMSE (kW)')
     plt.title('Model Performance Comparison (Load Forecasting)')
     
     # Add values on top of bars
     for bar in bars:
         yval = bar.get_height()
-        plt.text(bar.get_x() + bar.get_width()/2, yval + 0.01, round(yval, 4), ha='center', va='bottom')
+        plt.text(bar.get_x() + bar.get_width()/2, yval + 0.01, f"{yval:.4f}", ha='center', va='bottom')
 
     plt.savefig('model_comparison.png')
     print("\nComparison plot saved to 'model_comparison.png'")

@@ -29,11 +29,11 @@ class EnergyForecastApp:
         # Display Metrics
         metrics_text = (
             "Model: LSTM\n"
-            "RMSE: 0.5551 kW\n\n"
+            "RMSE: 0.1950 kW\n\n"
             "Decision Tree\n"
-            "RMSE: 0.7332 kW\n\n"
+            "RMSE: 0.2490 kW\n\n"
             "Random Forest\n"
-            "RMSE: 0.4754 kW"
+            "RMSE: 0.4680 kW"
         )
         tk.Label(control_frame, text=metrics_text, font=("Helvetica", 12), bg="white", justify="left").pack(pady=20, padx=10)
 

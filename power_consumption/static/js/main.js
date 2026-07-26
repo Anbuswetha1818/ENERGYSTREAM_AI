@@ -99,11 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 compChart = new Chart(ctxComp, {
                     type: 'bar',
                     data: {
-                        labels: ['LSTM (Proposed)', 'Random Forest', 'Decision Tree'],
+                        labels: ['LSTM (Proposed)', 'Decision Tree', 'Random Forest'],
                         datasets: [{
                             label: 'RMSE (lower is better)',
-                            data: [data.metrics.lstm_rmse, data.metrics.rf_rmse, data.metrics.dt_rmse],
-                            backgroundColor: [colors.primary, colors.accent1, colors.accent2],
+                            data: [data.metrics.lstm_rmse, data.metrics.dt_rmse, data.metrics.rf_rmse],
+                            backgroundColor: [colors.primary, colors.accent2, colors.accent1],
                             borderRadius: 12
                         }]
                     },

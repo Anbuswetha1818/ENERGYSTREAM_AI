@@ -4,7 +4,7 @@ import numpy as np
 from preprocessing import load_data, preprocess_data
 from model import build_lstm_model
 from sklearn.metrics import mean_squared_error
-def main():python
+def main():
     filepath = 'household_power_consumption.txt'
     if not os.path.exists(filepath):
         print(f"Error: {filepath} not found. Please ensure the dataset is in the project directory.")

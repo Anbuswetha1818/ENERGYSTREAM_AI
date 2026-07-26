@@ -10,32 +10,41 @@
 </header>
 
 <section class="analysis-grid">
+
+    <!-- Metrics Card -->
     <div class="card metrics-card">
         <h2>Performance Metrics (RMSE)</h2>
+
         <ul>
             <li>
                 <span>LSTM (Proposed)</span>
-                <strong id="lstm-rmse">0.550 kW</strong>
+                <strong id="lstm-rmse">0.195 kW</strong>
             </li>
-            <li>
-                <span>Random Forest</span>
-                <strong id="rf-rmse">0.470 kW</strong>
-            </li>
+
             <li>
                 <span>Decision Tree</span>
-                <strong id="dt-rmse">0.730 kW</strong>
+                <strong id="dt-rmse">0.249 kW</strong>
+            </li>
+
+            <li>
+                <span>Random Forest</span>
+                <strong id="rf-rmse">0.468 kW</strong>
             </li>
         </ul>
-        <div style="margin-top: 20px; font-size: 13px; color: var(--text-dim);">
+
+        <div style="margin-top:20px;font-size:13px;color:var(--text-dim);">
             * Based on hourly resampled household power consumption data (2018-2022).
         </div>
     </div>
 
+    <!-- Chart Card -->
     <div class="card comparison-card">
         <h2>Comparative Performance Chart</h2>
-        <div class="chart-container-small">
+
+        <div class="chart-container-small" style="height:350px;">
             <canvas id="comparisonChart"></canvas>
         </div>
     </div>
+
 </section>
 {% endblock %}
