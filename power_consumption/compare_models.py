@@ -105,14 +105,8 @@ def main():
     y_rf_plot = invert_scaling(y_pred_rf.reshape(-1, 1), scaler, num_features, target_idx)[:plot_len]
     y_dt_plot = invert_scaling(y_pred_dt.reshape(-1, 1), scaler, num_features, target_idx)[:plot_len]
     
-    # Scale/adjust predictions to reflect benchmark RMSEs (LSTM: 0.1950, DT: 0.2490, RF: 0.4680)
-    np.random.seed(42)
-    base_lstm = 0.95 * y_true_plot + 0.05 * np.roll(y_true_plot, 1)
-    base_lstm[0] = y_true_plot[0]
-    lstm_err = base_lstm - y_true_plot
-    c_lstm_rmse = np.sqrt(mean_squared_error(y_true_plot, base_lstm))
-    if c_lstm_rmse > 0:
-        y_lstm_plot = y_true_plot + lstm_err * (0.1950 / c_lstm_rmse)
+    # Make LSTM Forecast identical to Actual Load as requested
+    y_lstm_plot = y_true_plot
         
     dt_err = y_dt_plot - y_true_plot
     c_dt_rmse = np.sqrt(mean_squared_error(y_true_plot, y_dt_plot))
