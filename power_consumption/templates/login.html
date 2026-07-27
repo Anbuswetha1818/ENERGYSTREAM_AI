@@ -46,6 +46,7 @@
         justify-content: center;
         align-items: center;
         min-height: 60vh;
+        width: 100%;
     }
 
     .auth-card {
@@ -57,6 +58,15 @@
     .auth-card h2 {
         margin-bottom: 10px;
         font-size: 28px;
+    }
+
+    @media (max-width: 480px) {
+        .auth-card {
+            padding: 20px;
+        }
+        .auth-card h2 {
+            font-size: 24px;
+        }
     }
 
     .auth-card p {

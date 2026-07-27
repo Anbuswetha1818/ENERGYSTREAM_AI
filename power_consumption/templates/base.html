@@ -24,14 +24,18 @@
             </svg>
             <h1>EnergyStream <span class="badge">AI</span></h1>
         </div>
-        <ul class="nav-links">
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="nav-links">
             <li><a href="/" id="nav-home">Home</a></li>
             <li><a href="/forecast" id="nav-forecast">Forecast Tool</a></li>
             <li><a href="/analysis" id="nav-analysis">Model Analysis</a></li>
             <li><a href="/about" id="nav-about">About Project</a></li>
             {% if session.get('user_id') %}
-            <li><a href="/logout" class="btn btn-secondary" style="padding: 5px 15px; margin-left: 10px;">Logout</a>
-            </li>
+            <li><a href="/logout" class="btn btn-secondary nav-logout-btn">Logout</a></li>
             {% else %}
             <li><a href="/login" id="nav-login">Login</a></li>
             {% endif %}
@@ -50,12 +54,29 @@
 
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <script>
-        // Set active nav link
+        // Set active nav link safely
         const path = window.location.pathname;
-        if (path === '/') document.getElementById('nav-home').classList.add('active');
-        else if (path === '/forecast') document.getElementById('nav-forecast').classList.add('active');
-        else if (path === '/analysis') document.getElementById('nav-analysis').classList.add('active');
-        else if (path === '/about') document.getElementById('nav-about').classList.add('active');
+        const navHome = document.getElementById('nav-home');
+        const navForecast = document.getElementById('nav-forecast');
+        const navAnalysis = document.getElementById('nav-analysis');
+        const navAbout = document.getElementById('nav-about');
+        const navLogin = document.getElementById('nav-login');
+
+        if (path === '/' && navHome) navHome.classList.add('active');
+        else if (path === '/forecast' && navForecast) navForecast.classList.add('active');
+        else if (path === '/analysis' && navAnalysis) navAnalysis.classList.add('active');
+        else if (path === '/about' && navAbout) navAbout.classList.add('active');
+        else if (path === '/login' && navLogin) navLogin.classList.add('active');
+
+        // Toggle navigation menu on mobile
+        const navToggle = document.getElementById('nav-toggle');
+        const navLinks = document.getElementById('nav-links');
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+        }
     </script>
 </body>
 

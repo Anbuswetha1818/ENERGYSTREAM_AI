@@ -373,3 +373,217 @@ header {
     height: 100%;
     object-fit: contain;
 }
+
+/* Nav logout and toggle styling */
+.nav-logout-btn {
+    padding: 6px 16px;
+    margin-left: 10px;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 110;
+}
+
+.nav-toggle span {
+    width: 100%;
+    height: 2.5px;
+    background-color: var(--text-main);
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    background-color: var(--primary);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    background-color: var(--primary);
+}
+
+/* Media Queries for Responsiveness */
+
+/* Tablets and small desktops */
+@media (max-width: 992px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .input-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile & Portrait Tablets */
+@media (max-width: 768px) {
+    .glass-container {
+        padding: 25px;
+        margin: 20px auto;
+        border-radius: 20px;
+        min-height: auto;
+        width: 92%;
+    }
+
+    .navbar {
+        padding: 15px 5%;
+        position: relative;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: rgba(15, 23, 42, 0.98);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--glass-border);
+        padding: 25px 5%;
+        gap: 20px;
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        z-index: 105;
+    }
+
+    .nav-links.active {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-links a {
+        font-size: 16px;
+        display: block;
+        width: 100%;
+        padding: 8px 0;
+    }
+
+    .nav-logout-btn {
+        margin-left: 0;
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .header-actions {
+        width: 100%;
+    }
+
+    .header-actions .btn {
+        width: 100%;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .analysis-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .chart-container {
+        height: 300px;
+    }
+
+    .chart-container-small {
+        height: 250px;
+    }
+
+    .input-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+
+    .auth-card {
+        padding: 25px !important;
+    }
+}
+
+/* Small screen mobile devices */
+@media (max-width: 480px) {
+    .glass-container {
+        padding: 15px;
+        margin: 15px auto;
+        border-radius: 16px;
+        width: 94%;
+    }
+
+    .logo h1 {
+        font-size: 22px;
+    }
+
+    .logo svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .navbar {
+        padding: 12px 4%;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .stat-card {
+        padding: 16px;
+    }
+
+    .stat-card p {
+        font-size: 20px;
+    }
+
+    .prediction-result h2 {
+        font-size: 28px;
+    }
+}
