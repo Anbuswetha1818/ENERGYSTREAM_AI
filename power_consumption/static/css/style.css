@@ -435,11 +435,15 @@ header {
 /* Mobile & Portrait Tablets */
 @media (max-width: 768px) {
     .glass-container {
-        padding: 25px;
-        margin: 20px auto;
+        padding: 16px;
+        margin: 15px auto;
         border-radius: 20px;
         min-height: auto;
-        width: 92%;
+        width: 94%;
+    }
+
+    .card {
+        padding: 20px;
     }
 
     .navbar {
@@ -498,8 +502,8 @@ header {
     header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 15px;
-        margin-bottom: 30px;
+        gap: 12px;
+        margin-bottom: 25px;
     }
 
     .header-actions {
@@ -547,43 +551,71 @@ header {
     .auth-card {
         padding: 25px !important;
     }
+
+    .metrics-card strong {
+        white-space: nowrap;
+    }
 }
 
 /* Small screen mobile devices */
 @media (max-width: 480px) {
     .glass-container {
-        padding: 15px;
-        margin: 15px auto;
+        padding: 12px;
+        margin: 10px auto;
         border-radius: 16px;
-        width: 94%;
+        width: 95%;
     }
 
     .logo h1 {
-        font-size: 22px;
-    }
-
-    .logo svg {
-        width: 20px;
-        height: 20px;
-    }
-
-    .navbar {
-        padding: 12px 4%;
-    }
-
-    .card {
-        padding: 20px;
-    }
-
-    .stat-card {
-        padding: 16px;
-    }
-
-    .stat-card p {
         font-size: 20px;
     }
 
+    .logo svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .navbar {
+        padding: 10px 4%;
+    }
+
+    .card {
+        padding: 15px;
+        border-radius: 16px;
+    }
+
+    .card h2 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .stat-card {
+        padding: 14px;
+        border-radius: 16px;
+    }
+
+    .stat-card h3 {
+        font-size: 11px;
+    }
+
+    .stat-card p {
+        font-size: 18px;
+    }
+
+    header h2 {
+        font-size: 20px;
+    }
+
+    .project-info p {
+        font-size: 12px;
+    }
+
     .prediction-result h2 {
-        font-size: 28px;
+        font-size: 26px;
+    }
+
+    .metrics-card li {
+        font-size: 13px;
+        padding: 12px 0;
     }
 }
