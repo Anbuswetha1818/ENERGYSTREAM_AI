@@ -176,6 +176,14 @@ header {
     margin-bottom: 25px;
 }
 
+.auth-card .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+
 .chart-container {
     height: 400px;
     width: 100%;
